@@ -1,0 +1,536 @@
+/*
+ * The legal site's styles, built on the Qala design system: its colour
+ * tokens, Cairo, Material Symbols Rounded, radii and spacing, and its
+ * BrandMark, AppHeader back link, SettingsGroup/ListRow, Banner and pill
+ * patterns. This file is published as-is, so keep links and internal
+ * details out of these comments.
+ *
+ * Deliberate departures, all for reading long text in a browser:
+ * - Type is scaled up about 1.35× from the phone scale (body 11.5px → 16px,
+ *   subsection-title 13.5px → 18px), keeping the system's weights and its
+ *   1.85–2 line height for Arabic.
+ * - Text the reader must read never uses the tokens the system flags as
+ *   failing AA: section labels and meta lines use `ink-muted` instead of
+ *   `ink-faint` / `ink-meta`; links are `ink-strong` with a `brand`
+ *   underline; the destructive row label is `danger-ink`, not `danger`.
+ * - The system has no dark theme, so the site is light only.
+ */
+
+:root {
+  color-scheme: light;
+
+  --brand: #ff6b2d;
+  --brand-hover: #c9531b;
+  --brand-soft: #fff0e5;
+  --brand-soft-line: #ffd9c6;
+  --brand-tint: #fff7f1;
+
+  --screen: #fffcfa;
+  --surface: #ffffff;
+  --surface-sunken: #fbf3ed;
+
+  --line: #f1e3d8;
+  --line-chip: #f0e2d7;
+  --divider-list: #f5ebe3;
+
+  --ink: #2b2622;
+  --ink-strong: #3b332d;
+  --ink-secondary: #6e6259;
+  --ink-muted: #7d736c;
+  --ink-chevron: #c2b5ab;
+
+  --danger: #ef4444;
+  --danger-ink: #b4453c;
+
+  --radius-11: 11px;
+  --radius-13: 13px;
+  --radius-16: 16px;
+  --radius-pill: 999px;
+
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+
+  --font-sans: Cairo, system-ui, sans-serif;
+  --font-icon: "Material Symbols Rounded";
+
+  --wrap: 760px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 84px;
+}
+
+body {
+  margin: 0;
+  background: var(--screen);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  overflow-wrap: anywhere;
+}
+
+/* Material Symbols, as the system's `Icon`. */
+.icon {
+  font-family: var(--font-icon);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: "liga";
+  display: inline-block;
+  flex: none;
+  user-select: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding-inline: var(--space-16);
+}
+
+.skip {
+  position: absolute;
+  inset-inline-start: var(--space-16);
+  top: -60px;
+  z-index: 2;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-13);
+  padding: var(--space-8) var(--space-14);
+  color: var(--ink-strong);
+  font-weight: 700;
+}
+
+.skip:focus {
+  top: var(--space-8);
+}
+
+/* Top bar: BrandMark on the start side, the language chip on the end side. */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--screen);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  min-height: 64px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.brand .icon {
+  font-size: 26px;
+}
+
+.brand-text {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.lang {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--line-chip);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  color: var(--ink-strong);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.lang .icon {
+  font-size: 18px;
+  color: var(--brand);
+}
+
+.lang:hover {
+  background: var(--brand-tint);
+  border-color: var(--brand-soft-line);
+}
+
+main {
+  padding-top: var(--space-14);
+  padding-bottom: 56px;
+}
+
+/* The AppHeader's back arrow, as a link back to the index. */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding-block: var(--space-6);
+  color: var(--ink-muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back .icon {
+  font-size: 15px;
+}
+
+.back:hover {
+  color: var(--ink-strong);
+}
+
+h1 {
+  margin: var(--space-6) 0 var(--space-8);
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8) var(--space-12);
+  color: var(--ink-muted);
+  font-size: 14px;
+}
+
+/* StatusPill, neutral tone. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  background: var(--surface-sunken);
+  color: var(--ink-secondary);
+  border-radius: var(--radius-pill);
+  padding: 3px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Banner, brand tone (the system's informational banner). */
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-10);
+  margin-top: var(--space-16);
+  background: var(--brand-tint);
+  border: 1px solid var(--brand-soft-line);
+  border-radius: var(--radius-13);
+  padding: var(--space-12) var(--space-14);
+  color: var(--ink-strong);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.banner .icon {
+  font-size: 20px;
+  color: var(--brand);
+  margin-top: 4px;
+}
+
+/* Card: surface, 1px line, radius-16. Depth from borders, never shadows. */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-16);
+  overflow: hidden;
+}
+
+/* Table of contents: a collapsible card of ListRows. */
+.toc {
+  margin-top: var(--space-16);
+}
+
+.toc summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  padding: 13px 15px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--ink-strong);
+  font-size: 15.5px;
+  font-weight: 600;
+}
+
+.toc summary::-webkit-details-marker {
+  display: none;
+}
+
+.toc summary .lead {
+  color: var(--brand);
+}
+
+.toc summary .label {
+  flex: 1;
+}
+
+.toc summary .chevron {
+  color: var(--ink-chevron);
+  transition: transform 0.15s ease;
+}
+
+.toc[open] summary .chevron {
+  transform: rotate(180deg);
+}
+
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 var(--space-6);
+  border-top: 1px solid var(--divider-list);
+}
+
+.toc li a {
+  display: block;
+  padding: 7px 15px;
+  color: var(--ink-strong);
+  font-size: 15px;
+  line-height: 1.7;
+  text-decoration: none;
+}
+
+.toc li a:hover {
+  background: var(--brand-tint);
+}
+
+/* The document body: the app's terms/privacy screens, scaled for reading. */
+.doc section {
+  margin-top: 30px;
+}
+
+.doc h2 {
+  margin: 0 0 var(--space-6);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.doc p,
+.doc li {
+  font-size: 16px;
+  line-height: 1.95;
+  color: var(--ink-muted);
+}
+
+.doc p {
+  margin: 0 0 var(--space-10);
+}
+
+.doc ul {
+  margin: 0 0 var(--space-10);
+  padding-inline-start: 22px;
+}
+
+.doc li + li {
+  margin-top: 2px;
+}
+
+.doc li::marker {
+  color: var(--brand);
+}
+
+.doc strong {
+  color: var(--ink-strong);
+  font-weight: 700;
+}
+
+.intro {
+  margin-top: var(--space-16);
+}
+
+.intro p {
+  font-size: 16px;
+  line-height: 1.95;
+  color: var(--ink-muted);
+  margin: 0;
+}
+
+/* In-text links: readable ink with the brand as the underline. */
+.doc a,
+.intro a,
+.lead a,
+.banner a,
+.footer a {
+  color: var(--ink-strong);
+  text-decoration: underline;
+  text-decoration-color: var(--brand);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+.doc a:hover,
+.intro a:hover,
+.lead a:hover,
+.banner a:hover,
+.footer a:hover {
+  color: var(--brand-hover);
+}
+
+/* Index: SettingsGroups of ListRows. */
+.lead {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.95;
+  color: var(--ink-muted);
+}
+
+.group {
+  margin-top: 26px;
+}
+
+.group-title {
+  margin: 0 2px var(--space-8);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rows li + li {
+  border-top: 1px solid var(--divider-list);
+  margin-inline: 13px;
+}
+
+.rows li + li .row {
+  margin-inline: -13px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: 13px 15px;
+  min-height: 60px;
+  color: var(--ink-strong);
+  text-decoration: none;
+}
+
+.row:hover {
+  background: var(--brand-tint);
+}
+
+/* IconTile: brand icon on brand-soft. */
+.tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-11);
+  background: var(--brand-soft);
+  color: var(--brand);
+  flex: none;
+}
+
+.tile .icon {
+  font-size: 20px;
+}
+
+.row-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.row-label {
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.row-sub {
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+.row .chevron {
+  font-size: 16px;
+  color: var(--ink-chevron);
+}
+
+.row.danger .tile {
+  background: #fdf1ef;
+  color: var(--danger);
+}
+
+.row.danger .row-label {
+  color: var(--danger-ink);
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding-block: 22px 32px;
+  color: var(--ink-muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6) var(--space-16);
+  margin-bottom: var(--space-8);
+}
+
+.footer p {
+  margin: 0;
+}
+
+@media (max-width: 380px) {
+  .brand-text {
+    font-size: 20px;
+  }
+
+  .brand .icon {
+    font-size: 23px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+}
